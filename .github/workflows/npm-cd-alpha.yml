@@ -1,0 +1,26 @@
+name: NPM CD ALPHA
+on:
+  push:
+    tags: 
+      - "[0-9]+.[0-9]+.[0-9]+-alpha.[0-9]+"
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Enable Corepack
+        run: corepack enable
+      - name: Set Yarn Version
+        run: corepack prepare yarn@4.7.0 --activate
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '23.x'
+          registry-url: 'https://registry.npmjs.org'
+          cache: "yarn"
+          cache-dependency-path: ./yarn.lock
+      - run: yarn install
+      - run: yarn test
+      - run: yarn build
+      - run: npm publish --tag alpha
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

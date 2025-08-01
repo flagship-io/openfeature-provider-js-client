@@ -1,0 +1,24 @@
+name: NPM CD BETA
+on:
+  push:
+    tags: 
+      - "[0-9]+.[0-9]+.[0-9]+-beta.[0-9]+"
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Enable Corepack
+        run: corepack enable
+      - name: Set Yarn Version
+        run: corepack prepare yarn@4.7.0 --activate
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '23.x'
+          registry-url: 'https://registry.npmjs.org'
+      - run: yarn install
+      - run: yarn build
+      - run: yarn test
+      - run: npm publish --tag beta
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

@@ -1,4 +1,53 @@
 {
-  "name": "flagship-openfeature-web",
+  "name": "@flagship.io/openfeature-provider-js-client",
+  "version": "0.1.0",
+  "author": "AB Tasty",
+  "license": "Apache-2.0",
+  "description": "OpenFeature javascript client Adapter for Flagship",
+  "keywords": [
+    "openfeature",
+    "flagship",
+    "web",
+    "sdk"
+  ],
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist/*"
+  ],
+  "homepage": "https://github.com/flagship-io/openfeature-provider-js-client",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/flagship-io/openfeature-provider-js-client.git"
+  },
+  "peerDependencies": {
+    "@openfeature/web-sdk": "^1.5.0"
+  },
+  "dependencies": {
+    "@flagship.io/js-sdk": "^5.1.5"
+  },
+  "scripts": {
+    "build": "rm -rf dist && tsc",
+    "lint:fix": "eslint . --ext .ts --fix",
+    "lint": "eslint . --ext .ts",
+    "test": "vitest --coverage --run",
+    "test:ui": "vitest --ui",
+    "test:watch": "vitest --coverage"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.32.0",
+    "@openfeature/core": "^1.8.1",
+    "@openfeature/web-sdk": "^1.5.0",
+    "@types/node": "^24.2.0",
+    "@vitest/coverage-v8": "3.2.4",
+    "@vitest/ui": "^3.2.4",
+    "eslint": "^9.32.0",
+    "eslint-plugin-format": "^1.0.1",
+    "globals": "^16.3.0",
+    "jsdom": "^26.1.0",
+    "typescript": "^5.9.2",
+    "typescript-eslint": "^8.39.0",
+    "vitest": "^3.2.4"
+  },
   "packageManager": "yarn@4.4.1"
 }
