@@ -27,7 +27,8 @@
     "@flagship.io/js-sdk": "^5.1.5"
   },
   "scripts": {
-    "build": "rm -rf dist && tsc",
+    "generate:version": "genversion --es6 src/sdkVersion.ts",
+    "build": "rm -rf dist && yarn run generate:version && tsc",
     "lint:fix": "eslint . --ext .ts --fix",
     "lint": "eslint . --ext .ts",
     "test": "vitest --coverage --run",
@@ -43,6 +44,7 @@
     "@vitest/ui": "^3.2.4",
     "eslint": "^9.32.0",
     "eslint-plugin-format": "^1.0.1",
+    "genversion": "^3.2.0",
     "globals": "^16.3.0",
     "jsdom": "^26.1.0",
     "typescript": "^5.9.2",

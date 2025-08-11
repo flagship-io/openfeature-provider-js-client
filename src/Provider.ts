@@ -17,6 +17,7 @@ import Flagship, { FSFetchStatus,
   primitive,
   Visitor } from '@flagship.io/js-sdk';
 import { AdapterLogger } from './AdapterLogger';
+import { version as sdkVersion } from './sdkVersion';
 
 /**
  * ABTastyProvider is an OpenFeature provider that integrates with the Flagship SDK.
@@ -119,7 +120,8 @@ export class ABTastyProvider implements Provider {
       await Flagship.start(this._envId, this._apiKey, {
         ...this._config,
         fetchNow: false,
-        logManager: this._logger
+        logManager: this._logger,
+        sdkVersion
       });
     }
   }
